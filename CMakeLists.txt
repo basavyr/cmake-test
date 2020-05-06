@@ -1,7 +1,10 @@
 cmake_minimum_required(VERSION 3.0)
-project(TEST_CMAKE)
+
+project(CMAKE_TEST)
 
 add_executable(test_cmake ../src/main.cc)
+
+target_compile_featureS(test_cmake PRIVATE cxx_lambda_init_captures)
 
 add_library(
 	test
@@ -11,4 +14,4 @@ add_library(
 
 target_link_libraries(test_cmake test)
 
-add_compile_options(-Wall)
+add_compile_options(-Wall -Wextra -Wpedantic)

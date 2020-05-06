@@ -1,12 +1,13 @@
 #include "../include/test.hh"
 #include <iostream>
+#include <functional>
 
 inline void newline()
 {
     std::cout << "\n";
 }
 
-int main()
+void tests()
 {
     const std::string darwin_user = "cmake";
     std::ofstream fout("../output/tests.out");
@@ -35,4 +36,18 @@ int main()
         std::cout << "Program stopped with status " << static_cast<int>(status);
         newline();
     }
+}
+
+void referenceWrapper_Test()
+{
+    auto out = std::ref(std::cout << "Reference ");
+    [&]() {
+        out.get() << "Test...";
+        newline();
+    }();
+}
+
+int main()
+{
+    referenceWrapper_Test();
 }
