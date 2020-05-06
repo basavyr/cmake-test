@@ -40,11 +40,27 @@ void tests()
 
 void referenceWrapper_Test()
 {
-    auto out = std::ref(std::cout << "Reference ");
-    [&]() {
-        out.get() << "Test...";
-        newline();
-    }();
+    auto sayHello = [&](auto name) {
+        auto out = std::ref(std::cout << "Hey there ");
+        out.get() << name << "\n";
+    };
+
+    int x = 4,
+        y = 5, z = 6;
+    std::reference_wrapper<int> refs[]{x, y, z};
+
+    int n;
+    std::cout << "How many times you want to be polite? "
+              << "\n";
+    std::cin >> n;
+    for (auto x = 0; x < n; ++x)
+    {
+        std::string nameX = "Ariana";
+        nameX.append(std::to_string(x));
+        sayHello(nameX);
+    }
+    // for (auto x : refs)
+    //     std::cout << x << "\n";
 }
 
 int main()

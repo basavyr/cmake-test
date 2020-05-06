@@ -1,17 +1,19 @@
 cmake_minimum_required(VERSION 3.0)
 
+set(CMAKE_CXX_STANDARD 14)
+
+set(CMAKE_BUILD_TYPE Debug)
+
+
+set(CMAKE_CXX_FLAGS  "-std=c++17")
+
+
 project(CMAKE_TEST)
 
-add_executable(test_cmake ../src/main.cc)
+include_directories(include)
+add_subdirectory(src)
 
-target_compile_featureS(test_cmake PRIVATE cxx_lambda_init_captures)
+add_library(test STATIC ./src/test.cc)
 
-add_library(
-	test
-	../src/test.cc
-	../include/test.hh
-	)
-
-target_link_libraries(test_cmake test)
-
+# target_link_libraries(CMAKE_TEST test )
 add_compile_options(-Wall -Wextra -Wpedantic)
