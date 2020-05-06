@@ -1,12 +1,14 @@
 #include "../include/test.hh"
 
-void test::runTest(){
-    const std::string name="CMAKE";
-    std::cout<<"Hi there "<<name;
-    std::cout<<"\n";
+void test::runTest(const std::string &name)
+{
+    std::cout << "Hi there " << name;
+    std::cout << "\n";
 }
 
-int main()
+void test::runTestFile(const std::string &name, std::ofstream &fout)
 {
-    test::runTest();
+    const std::string newline = "\n";
+    fout << "Hey there " << name;
+    fout << newline;
 }
