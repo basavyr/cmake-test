@@ -63,7 +63,46 @@ void referenceWrapper_Test()
     //     std::cout << x << "\n";
 }
 
+void customText_RefWrapper(const std::string &name)
+{
+    auto sayHi = [&](auto name) {
+        auto namex = name;
+        namex.append("\n");
+        auto x = std::ref(namex);
+        std::cout << x.get() << "\n";
+    };
+
+    auto slen = name.length();
+
+    char a[slen + 1];
+
+    strcpy(a, name.c_str());
+
+    // for (int i = 0; i < slen; ++i)
+    // {
+    //     auto p = std::ref(a[i]);
+    //     std::cout << p.get();
+    // }
+
+    std::string nameCopy(name);
+
+    char aCopy[nameCopy.length() + 1];
+
+    for (int id = 0; id < static_cast<int>(sizeof(aCopy)) - 1; ++id)
+    {
+        aCopy[id] = nameCopy[id];
+        // std::cout << aCopy[id];
+    }
+
+    aCopy[sizeof(aCopy) - 1] = '\n';
+    for (auto &&n : aCopy)
+        std::cout << n;
+    // sayHi(name);
+}
+
 int main()
 {
-    referenceWrapper_Test();
+    // referenceWrapper_Test();
+    const std::string name = "Rob";
+    customText_RefWrapper(name);
 }
